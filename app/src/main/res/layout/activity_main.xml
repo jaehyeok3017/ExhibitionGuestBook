@@ -76,6 +76,24 @@
             app:layout_constraintStart_toEndOf="@+id/colorBlack"
             android:layout_marginStart="20dp"/>
 
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_trashcan"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/upload"
+            android:layout_marginEnd="20dp"/>
+
+        <ImageView
+            android:id="@+id/upload"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_upload"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
