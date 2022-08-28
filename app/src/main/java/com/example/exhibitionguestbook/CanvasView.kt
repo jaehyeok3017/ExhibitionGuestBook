@@ -5,16 +5,13 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
+import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.content.res.ResourcesCompat
 
-class CanvasView(context : Context) : View(context) {
-    companion object {
-        private const val STROKE_WIDTH = 12f
-    }
-
+class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs) {
     private lateinit var extraCanvas : Canvas
     private lateinit var extraBitmap : Bitmap
 
@@ -93,5 +90,9 @@ class CanvasView(context : Context) : View(context) {
 
     private fun touchUp() {
         path.reset()
+    }
+
+    companion object {
+        private const val STROKE_WIDTH = 12f
     }
 }
