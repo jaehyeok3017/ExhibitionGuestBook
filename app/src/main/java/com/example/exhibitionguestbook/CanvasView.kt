@@ -16,7 +16,7 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
     }
 
     companion object {
-        private const val STROKE_WIDTH = 12f
+        private var STROKE_WIDTH = 12f
 
         private var strokePaint = Paint().apply {
             color = Color.BLACK
@@ -179,5 +179,12 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
         extraCanvas = Canvas(extraBitmap)
         extraCanvas.drawColor(backgroundColor)
         invalidate()
+    }
+
+    fun stroke(changeStroke : String){
+        when(changeStroke){
+            "plus" -> strokePaint.strokeWidth += 1.0f
+            "minus" -> strokePaint.strokeWidth -= 1.0f
+        }
     }
 }

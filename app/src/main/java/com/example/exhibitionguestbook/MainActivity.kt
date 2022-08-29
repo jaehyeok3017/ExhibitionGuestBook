@@ -35,6 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.erase.setOnClickListener { canvasView.erase() }
         binding.delete.setOnClickListener { canvasView.reset() }
+
+        binding.plus.setOnClickListener { canvasView.stroke("plus") }
+        binding.minus.setOnClickListener { canvasView.stroke("minus") }
     }
 }
 
