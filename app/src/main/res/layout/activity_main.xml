@@ -87,6 +87,24 @@
             android:layout_marginStart="20dp"/>
 
         <ImageView
+            android:id="@+id/plus"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_plus"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/erase"
+            android:layout_marginStart="20dp"/>
+
+        <ImageView
+            android:id="@+id/minus"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_minus"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/plus"
+            android:layout_marginStart="20dp"/>
+
+        <ImageView
             android:id="@+id/delete"
             android:layout_width="100dp"
             android:layout_height="100dp"
