@@ -12,7 +12,6 @@ import android.widget.FrameLayout
 import androidx.core.content.res.ResourcesCompat
 
 
-@Suppress("DEPRECATION")
 class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs) {
     init{
         setLayerType(FrameLayout.LAYER_TYPE_HARDWARE, null)
@@ -181,7 +180,7 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
         extraCanvas = Canvas(extraBitmap)
         extraCanvas.drawColor(backgroundColor)
         extraCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.MULTIPLY)
-        extraCanvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), erasePaint);
+        extraCanvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), erasePaint)
     }
 
     fun strokeWidthSet(changeStroke : String){
@@ -189,9 +188,5 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
             "plus" -> strokePaint.strokeWidth += 1.0f
             "minus" -> strokePaint.strokeWidth -= 1.0f
         }
-    }
-
-    fun returnBitmap(backgroundWidth : Int, backgroundHeight: Int) : Bitmap {
-        return extraBitmap
     }
 }
