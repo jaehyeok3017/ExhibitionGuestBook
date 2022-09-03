@@ -1,19 +1,18 @@
 package com.example.exhibitionguestbook
 
-import android.content.Context
+import android.annotation.SuppressLint
+import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Path
+import android.graphics.Point
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.MotionEvent
-import android.view.View
-import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
-import android.view.ViewConfiguration
-import androidx.core.content.res.ResourcesCompat
+import android.util.Log
 import com.example.exhibitionguestbook.databinding.ActivityMainBinding
+import com.google.firebase.storage.FirebaseStorage
+import java.io.ByteArrayOutputStream
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -25,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         canvasView = CanvasView(this, attrs = null)
+        binding.canvas.isDrawingCacheEnabled = true
 
         binding.colorBlack.setOnClickListener { canvasView.drawColorSet("black") }
         binding.colorBlue.setOnClickListener { canvasView.drawColorSet("blue") }
@@ -33,11 +33,40 @@ class MainActivity : AppCompatActivity() {
         binding.colorPink.setOnClickListener { canvasView.drawColorSet("pink") }
         binding.colorRed.setOnClickListener { canvasView.drawColorSet("red") }
 
-        binding.erase.setOnClickListener { canvasView.erase() }
-        binding.delete.setOnClickListener { canvasView.reset() }
+        binding.erase.setOnClickListener { canvasView.drawColorSet("white") }
+        binding.reset.setOnClickListener {
+            val display = windowManager.defaultDisplay
+            val size = Point()
+            display.getRealSize(size)
 
-        binding.plus.setOnClickListener { canvasView.stroke("plus") }
-        binding.minus.setOnClickListener { canvasView.stroke("minus") }
+            val width = size.x
+            val height = size.y
+            canvasView.reset(width, height)
+        }
+
+        binding.upload.setOnClickListener {
+            val storage: FirebaseStorage? = FirebaseStorage.getInstance()
+
+            val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+            val imageFileName = "IMAGE_" + timestamp + "_.png"
+            val stoargeRef = storage?.reference?.child("images")?.child(imageFileName)
+
+            val baos = ByteArrayOutputStream()
+            val bitmap = getBitmap()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
+
+            stoargeRef?.putBytes(data)?.addOnFailureListener { e ->
+                Log.w(ContentValues.TAG, "Error adding document", e)
+            }?.addOnSuccessListener {
+                Log.d(TAG, "업로드 완료")
+            }
+        }
+
+        binding.plus.setOnClickListener { canvasView.strokeWidthSet("plus") }
+        binding.minus.setOnClickListener { canvasView.strokeWidthSet("minus") }
     }
+
+    private fun getBitmap() : Bitmap = binding.canvas.drawingCache
 }
 

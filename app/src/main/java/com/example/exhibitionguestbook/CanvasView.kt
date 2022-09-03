@@ -1,15 +1,18 @@
 package com.example.exhibitionguestbook
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewConfiguration
 import android.widget.FrameLayout
 import androidx.core.content.res.ResourcesCompat
 
 
+@Suppress("DEPRECATION")
 class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs) {
     init{
         setLayerType(FrameLayout.LAYER_TYPE_HARDWARE, null)
@@ -21,7 +24,7 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
         private var strokePaint = Paint().apply {
             color = Color.BLACK
             isAntiAlias = true
-            isDither = true
+            isDither = false
 
             style = Paint.Style.STROKE
             strokeJoin = Paint.Join.ROUND
@@ -30,12 +33,14 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
         }
 
         private val eraseCirclePaint = Paint().apply {
+            color = Color.BLACK
             isAntiAlias = true
             style = Paint.Style.STROKE
             strokeWidth = STROKE_WIDTH
         }
 
         private val erasePaint = Paint().apply {
+            color = Color.WHITE
             isAntiAlias = true
             xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
         }
@@ -57,8 +62,6 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
     private var isMoving = false
     private var isErasing = false
 
-
-
     override fun onDraw(canvas: Canvas){
         super.onDraw(canvas)
         canvas.drawBitmap(extraBitmap, 0f, 0f, null)
@@ -77,6 +80,7 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
         extraCanvas.drawColor(backgroundColor)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if(event == null) return false
 
@@ -95,6 +99,7 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
             MotionEvent.ACTION_DOWN -> {
                 if(isErasing){
                     extraCanvas.drawCircle(touchEventX, touchEventY, STROKE_WIDTH, erasePaint)
+                    buildDrawingCache()
                     erasePositionX = touchEventX
                     erasePositionY = touchEventY
                 }
@@ -163,6 +168,7 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
             "green" -> R.color.green
             "blue" -> R.color.blue
             "pink" -> R.color.pink
+            "white" -> R.color.white
             else -> R.color.black
         }
 
@@ -170,21 +176,22 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
         strokePaint.color = resourceNextColor
     }
 
-    fun erase() {
-        isErasing = true
-    }
-
-    fun reset() {
-        extraBitmap = Bitmap.createBitmap(2000, 2000, Bitmap.Config.ARGB_8888)
+    fun reset(width : Int, height: Int) {
+        extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         extraCanvas = Canvas(extraBitmap)
         extraCanvas.drawColor(backgroundColor)
-        invalidate()
+        extraCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.MULTIPLY)
+        extraCanvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), erasePaint);
     }
 
-    fun stroke(changeStroke : String){
+    fun strokeWidthSet(changeStroke : String){
         when(changeStroke){
             "plus" -> strokePaint.strokeWidth += 1.0f
             "minus" -> strokePaint.strokeWidth -= 1.0f
         }
+    }
+
+    fun returnBitmap(backgroundWidth : Int, backgroundHeight: Int) : Bitmap {
+        return extraBitmap
     }
 }
