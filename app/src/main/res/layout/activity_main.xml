@@ -105,7 +105,7 @@
             android:layout_marginStart="20dp"/>
 
         <ImageView
-            android:id="@+id/delete"
+            android:id="@+id/reset"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/ic_trashcan"
@@ -131,5 +131,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/background" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
