@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             val storage: FirebaseStorage? = FirebaseStorage.getInstance()
 
             val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-            val imageFileName = "IMAGE_" + timestamp + "_.png"
+            val imageFileName = "$timestamp.png"
             val stoargeRef = storage?.reference?.child("images")?.child(imageFileName)
 
             val baos = ByteArrayOutputStream()
