@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="정상적으로 방명록\n업로드가 완료되었습니다!"
+        android:fontFamily="@font/suit_medium"
         android:textSize="24sp"
         android:textColor="@color/black"
         android:textAlignment="center"
