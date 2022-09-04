@@ -59,15 +59,10 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
     private var currentX = 0f
     private var currentY = 0f
     private var isMoving = false
-    private var isErasing = false
 
     override fun onDraw(canvas: Canvas){
         super.onDraw(canvas)
         canvas.drawBitmap(extraBitmap, 0f, 0f, null)
-
-        if(isErasing && isMoving){
-            canvas.drawCircle(erasePositionX, erasePositionY, STROKE_WIDTH, eraseCirclePaint)
-        }
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
@@ -85,36 +80,19 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
 
         // S-pen
         if(event.getToolType(0) != MotionEvent.TOOL_TYPE_STYLUS) return false
-        if(event.buttonState == MotionEvent.BUTTON_STYLUS_PRIMARY){
-            if(!isMoving) {
-                isErasing = !isErasing
-            }
-        }
 
         touchEventX = event.x
         touchEventY = event.y
 
         when(event.action){
             MotionEvent.ACTION_DOWN -> {
-                if(isErasing){
-                    extraCanvas.drawCircle(touchEventX, touchEventY, STROKE_WIDTH, erasePaint)
-                    buildDrawingCache()
-                    erasePositionX = touchEventX
-                    erasePositionY = touchEventY
-                }
-                else touchStart()
+                touchStart()
             }
             MotionEvent.ACTION_MOVE -> {
-                if(isErasing){
-                    path.addCircle(touchEventX, touchEventY, STROKE_WIDTH, Path.Direction.CW)
-                    erasePositionX = touchEventX
-                    erasePositionY = touchEventY
-                }
-                else touchMove()
+                touchMove()
             }
             MotionEvent.ACTION_UP -> {
-                if(isErasing) extraCanvas.drawPath(path, erasePaint)
-                else extraCanvas.drawPath(path, strokePaint)
+                extraCanvas.drawPath(path, strokePaint)
                 touchUp()
             }
         }
@@ -158,8 +136,6 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
     }
 
     fun drawColorSet(changeColor: String){
-        isErasing = false
-
         var nextColor : Int = when(changeColor){
             "black" -> R.color.black
             "red" -> R.color.red
