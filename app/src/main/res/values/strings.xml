@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">ExhibitionGuestBook</string>
-    <string name="delete_message">정말로 그림판 전체를 삭제하시겠습니까?\n삭제한 이후로는 복구가 불가능합니다.</string>
+    <string name="delete_message">정말로 그림판 전체를 삭제하시겠습니까?\n\n삭제한 이후로는 복구가 불가능합니다.</string>
 </resources>

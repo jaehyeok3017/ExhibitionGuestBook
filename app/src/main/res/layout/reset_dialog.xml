@@ -6,7 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/background_dialog_radius"
-    android:paddingHorizontal="140dp"
+    android:paddingHorizontal="120dp"
     android:paddingVertical="60dp"
     tools:ignore="MissingDefaultResource">
 
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/delete_message"
-        android:textSize="50sp"
+        android:textSize="24sp"
         android:textColor="@color/black"
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@id/logo_icon"
@@ -39,32 +39,33 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="취소"
-        android:paddingVertical="15dp"
-        android:paddingHorizontal="120dp"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="40dp"
         android:backgroundTint="#FFFFE7E7"
         android:textColor="#FFFF7272"
-        android:textSize="36sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/dialog_text"
         app:layout_constraintTop_toBottomOf="@id/dialog_text"
-        android:layout_marginStart="50dp"  />
+        android:layout_marginStart="20dp"
+        />
 
     <Button
         android:id="@+id/delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
-        android:paddingVertical="15dp"
-        android:paddingHorizontal="120dp"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="40dp"
         android:backgroundTint="#FFFF7272"
         android:textColor="#FFFFFFFF"
         android:text="삭제"
-        android:textSize="36sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/cancel_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dialog_text"
-        android:layout_marginEnd="50dp"/>
+        android:layout_marginEnd="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
