@@ -3,13 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/drawable/background_dialog_button.xml" value="0.237" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/drawable/background_radius.xml" value="0.237" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/drawable/btn_dialog_cancel.xml" value="0.237" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/drawable/btn_dialog_delete.xml" value="0.237" />
         <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/drawable/color_black.xml" value="0.17" />
         <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/drawable/color_red.xml" value="0.253" />
         <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/drawable/ic_erase.xml" value="0.17" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/drawable/ic_logo.xml" value="0.237" />
         <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/drawable/ic_pinkcolor.xml" value="0.17" />
         <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/drawable/ic_redcolor.xml" value="0.17" />
         <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/drawable/ic_trashcan.xml" value="0.17" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/drawable/ic_upload.xml" value="0.237" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/layout/activity_main.xml" value="0.12" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/layout/fragment_resetdialog.xml" value="0.18" />
         <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17" />
         <entry key="..\:/Users/user/AndroidStudioProjects/ExhibitionGuestBook/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.17" />
       </map>
