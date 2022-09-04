@@ -1,15 +1,15 @@
 package com.example.exhibitionguestbook
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Point
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.core.view.marginTop
+import android.view.LayoutInflater
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import com.example.exhibitionguestbook.databinding.ActivityMainBinding
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         binding.colorRed.setOnClickListener { canvasView.drawColorSet("red"); previousColor = "red" }
 
         binding.erase.setOnClickListener { canvasView.drawColorSet("white"); previousColor = "white" }
-        binding.reset.setOnClickListener { startActivity(Intent(this, MainActivity::class.java)) }
+        binding.reset.setOnClickListener { resetDialogShowAndClickListener() }
 
         binding.upload.setOnClickListener {
             val storage: FirebaseStorage? = FirebaseStorage.getInstance()
@@ -64,5 +64,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getBitmap() : Bitmap = binding.canvas.drawingCache
+    private fun restartActivity() = startActivity(Intent(this, MainActivity::class.java))
+    private fun resetDialogShowAndClickListener() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.reset_dialog, null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(dialogView)
+
+        val alertDialog = mBuilder.show()
+
+        val cancelBtn = dialogView.findViewById<Button>(R.id.cancel_button)
+        val deleteBtn = dialogView.findViewById<Button>(R.id.delete_button)
+
+        cancelBtn.setOnClickListener { alertDialog.dismiss() }
+        deleteBtn.setOnClickListener { restartActivity() }
+    }
 }
 
