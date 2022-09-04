@@ -175,14 +175,6 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
         strokePaint.color = resourceNextColor
     }
 
-    fun reset(width : Int, height: Int) {
-        extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        extraCanvas = Canvas(extraBitmap)
-        extraCanvas.drawColor(backgroundColor)
-        extraCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.MULTIPLY)
-        extraCanvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), erasePaint)
-    }
-
     fun strokeWidthSet(changeStroke : String){
         when(changeStroke){
             "plus" -> strokePaint.strokeWidth += 1.0f
