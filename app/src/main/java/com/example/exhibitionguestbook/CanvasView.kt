@@ -30,19 +30,6 @@ class CanvasView(context : Context, attrs : AttributeSet?) : View(context, attrs
             strokeCap = Paint.Cap.ROUND
             strokeWidth = STROKE_WIDTH
         }
-
-        private val eraseCirclePaint = Paint().apply {
-            color = Color.BLACK
-            isAntiAlias = true
-            style = Paint.Style.STROKE
-            strokeWidth = STROKE_WIDTH
-        }
-
-        private val erasePaint = Paint().apply {
-            color = Color.WHITE
-            isAntiAlias = true
-            xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
-        }
     }
 
     private lateinit var extraCanvas : Canvas
